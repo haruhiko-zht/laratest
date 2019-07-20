@@ -7,11 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
-	use SoftDeletes;
-
-	protected $fillable = [
-		'title','body','votes',
-	];
-
-	protected $dates = ['deleted_at'];
+public function user(){
+	return $this->belongsTo('App\User');
+}
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ModifyPostTable extends Migration
+class CreateRolesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class ModifyPostTable extends Migration
      */
     public function up()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            $table->renameColumn('rating','votes');
-            $table->dropColumn('visible');
+        Schema::create('roles', function (Blueprint $table) {
+            $table->increments('id');
+			$table->string('name');
+			$table->timestamps();
         });
     }
 
@@ -26,8 +27,6 @@ class ModifyPostTable extends Migration
      */
     public function down()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('roles');
     }
 }
