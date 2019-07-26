@@ -3,6 +3,8 @@
 use App\Country;
 use App\Post;
 use App\User;
+use App\Tag;
+use App\Video;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,10 +34,38 @@ use App\User;
 //	}
 //	return User::find($id)->roles->name;
 
-Route::get('/user/{id}/country', function($id){
-	$country = Country::find($id);
+//Route::get('/user/{id}/country', function($id){
+//	$country = Country::find($id);
+//
+//	foreach ($country->posts as $post){
+//		echo $post->title.'<br>';
+//	}
+//});
 
-	foreach ($country->posts as $post){
-		echo $post->title.'<br>';
-	}
+//Route::get('/user/image', function(){
+//	return User::find(1)->image;
+//});
+//
+//Route::get('/post/image', function(){
+//	return Post::find(1)->image;
+//});
+
+//Route::get('/post/tag', function(){
+//	$post = Post::find(1)->tags;
+//	return $post;
+//});
+//
+//Route::get('/video/tag', function(){
+//	$video = Video::find(1)->tags;
+//	return $video;
+//});
+
+Route::get('/tag/post', function(){
+	$post = Tag::find(1)->posts;
+	return $post;
+});
+
+Route::get('/tag/video', function(){
+	$video = Tag::find(1)->videos;
+	return $video;
 });
