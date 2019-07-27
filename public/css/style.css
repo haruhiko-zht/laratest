@@ -13,3 +13,9 @@ footer {
 .contents {
     min-height: 400px;
 }
+
+.logo {
+    font-family: 'Righteous', cursive;
+    font-size: 30px;
+    color: #f44336;
+}

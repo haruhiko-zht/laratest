@@ -7,6 +7,7 @@
 
     <title>Laravel</title>
 
+    <link href="https://fonts.googleapis.com/css?family=Righteous&display=swap" rel="stylesheet">
     <link href="{{asset('css/app.css')}}" rel="stylesheet">
     <link href="{{asset('css/style.css')}}" rel="stylesheet">
     {{--    @stack('styles')--}}
