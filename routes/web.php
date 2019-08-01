@@ -22,28 +22,48 @@ use Illuminate\Http\Request;
 //})->middleware('auth');
 
 
-Route::get('/admin', 'AdminController@index')->name('admin');
+//Route::get('/admin', ['middleware'=>'isAdmin', function(){
+//	return redirect('/home');
+//}]);
 
-Route::get('/', function(Request $request){
-//	$request->session()->put('Mode', 'Awesome');
-//	$request->session()->put('Days', ['1', '2', '3']);
-//	$request->session()->put('Mode', 'Super Awesome');
+//Route::middleware(['isAdmin'])->group(function(){
+//	Route::get('/admin', function(){
+//		return redirect('/home', 303);
+//	});
 //
-//	$request->session()->push('Days','4');
+//	Route::get('/admin/dashboard', function(){
+//		return redirect('/home', 303);
+//	});
+//});
 
-//	return $request->session()->get('Mode');
+Route::resource('/admin', 'AdminController');
 
-//	$request->session()->forget('Days');
 
-//	session(['Mode'=>'ULTRA AWESOME']);
-//	session(['Days'=>['x']]);
+//Route::get('/', function(){
+//	$user = Auth::user();
+//	return $user;
+//});
 
-//	$request->session()->flash('Gretting','hello guys');
-//	$request->session()->reflash();
-//	$request->session()->keep(['Gretting']);
-
-	return $request->session()->all();
-});
+//Route::get('/', function(Request $request){
+////	$request->session()->put('Mode', 'Awesome');
+////	$request->session()->put('Days', ['1', '2', '3']);
+////	$request->session()->put('Mode', 'Super Awesome');
+////
+////	$request->session()->push('Days','4');
+//
+////	return $request->session()->get('Mode');
+//
+////	$request->session()->forget('Days');
+//
+////	session(['Mode'=>'ULTRA AWESOME']);
+////	session(['Days'=>['x']]);
+//
+////	$request->session()->flash('Gretting','hello guys');
+////	$request->session()->reflash();
+////	$request->session()->keep(['Gretting']);
+//
+//	return $request->session()->all();
+//});
 
 Auth::routes();
 
