@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Post;
 use Illuminate\Http\Request;
-use App\Http\Requests\PostFormRequest;
 
-class PostsController extends Controller
+class AdminController extends Controller
 {
+
+	public function __construct()
+	{
+		$this->middleware('auth');
+	}
+
     /**
      * Display a listing of the resource.
      *
@@ -15,8 +19,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-    	$posts = Post::all();
-		return view('posts.index', compact('posts'));
+        return 'hello admin';
     }
 
     /**
@@ -26,7 +29,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        //
     }
 
     /**
@@ -35,27 +38,9 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PostFormRequest $request)
+    public function store(Request $request)
     {
-//    	$validateData = $request->validate([
-//    		'title' => 'required|max:15',
-//			'body' => 'required',
-//			'number' => 'numeric',
-//			'check' => 'accepted',
-//		]);
-
-    	$post = new Post;
-    	$post->title = $request->title;
-    	$post->body = $request->body;
-    	$post->save();
-
-    	return redirect('/', 303);
-
-//    	$input['title'] = $request->title;
-//    	$input['body'] = $request->body;
-
-//    	return $input;
-//		Post::create($input);
+        //
     }
 
     /**
@@ -66,8 +51,7 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-    	$post = Post::find($id);
-        return $post->title;
+        //
     }
 
     /**
@@ -78,9 +62,7 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-
-    	$post = Post::findOrFail($id);
-    	return view('posts.edit', compact('post'));
+        //
     }
 
     /**
@@ -92,14 +74,7 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-    	$post = Post::findOrFail($id);
-    	$post->title = $request->title;
-    	$post->body = $request->body;
-    	$post->save();
-
-    	return redirect('/posts', 303);
-
-//        return $request;
+        //
     }
 
     /**
@@ -110,9 +85,6 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        $post = Post::findOrFail($id);
-        $post->delete();
-
-        return redirect('/posts', 303);
+        //
     }
 }

@@ -2,6 +2,7 @@
 
 use App\Post;
 use App\User;
+use Illuminate\Http\Request;
 
 
 /*
@@ -16,10 +17,34 @@ use App\User;
 */
 
 
-Route::get('/', 'HomeController@index');
+//Route::get('/admin', function(){
+//	return 'hello admin';
+//})->middleware('auth');
 
-Route::group(['middleware'=>'web'], function(){
-	Route::resource('/posts', 'PostsController');
+
+Route::get('/admin', 'AdminController@index')->name('admin');
+
+Route::get('/', function(Request $request){
+//	$request->session()->put('Mode', 'Awesome');
+//	$request->session()->put('Days', ['1', '2', '3']);
+//	$request->session()->put('Mode', 'Super Awesome');
+//
+//	$request->session()->push('Days','4');
+
+//	return $request->session()->get('Mode');
+
+//	$request->session()->forget('Days');
+
+//	session(['Mode'=>'ULTRA AWESOME']);
+//	session(['Days'=>['x']]);
+
+//	$request->session()->flash('Gretting','hello guys');
+//	$request->session()->reflash();
+//	$request->session()->keep(['Gretting']);
+
+	return $request->session()->all();
 });
 
+Auth::routes();
 
+Route::get('/home', 'HomeController@index')->name('home');

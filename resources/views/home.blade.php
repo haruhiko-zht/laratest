@@ -1,8 +1,23 @@
-@extends('layout.app')
+@extends('layouts.app')
 
-@section('appContent')
-    <div>
-        <h3>Hello user</h3>
-        <h4>{{ $date }}</h4>
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Dashboard</div>
+
+                <div class="card-body">
+                    @if (session('Mode'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('Mode') }}
+                        </div>
+                    @endif
+
+                    You are logged in!
+                </div>
+            </div>
+        </div>
     </div>
-@stop
+</div>
+@endsection
