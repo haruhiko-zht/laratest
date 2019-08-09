@@ -1,45 +1,40 @@
-@extends('layout.app')
+@extends('layouts.app')
 
-{{--@push('styles')--}}
-{{--<link href="{{asset('css/style.css')}}" rel="stylesheet">--}}
-{{--@endpush--}}
-
-@section('appContent')
-
-    <div>
+@section('content')
+    <div class="container">
         <br><br>
-
-        <form method="post" action="/posts">
-            <div class="form-group">
-                <label for="title_form">Title</label>
-                <input type="text" class="form-control" id="title_form" name="title"
-                       placeholder="Enter the title">
-            </div>
-
-            <div class="form-group">
-                <label for="content_form">Body</label>
-                <textarea class="form-control" id="content_form" name="body" rows="3"></textarea>
-            </div>
-
+        <form method="post" action="{{ url('/posts') }}" enctype="multipart/form-data">
             @csrf
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="title" name="title">
+            </div>
+
+            <div class="form-group">
+                <label for="body">Text</label>
+                <textarea id="article-ckeditor" class="form-control" rows="5" name="body"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="file">File</label>
+                <input type="file" class="form-control" id="file" name="file">
+            </div>
+
+            <button type="submit">submit</button>
         </form>
 
-        <br>
-        <div>
-            @if($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-        </div>
+        <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+        <script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
+        <script>
+            var options = {
+                filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+                filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token={{ csrf_token() }}',
+                filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+                filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token={{ csrf_token() }}'
+            };
 
+            $('#article-ckeditor').ckeditor(options);
+            // CKEDITOR.replace('article-ckeditor');
+        </script>
     </div>
-    <br>
-
-
-@stop
+@endsection
