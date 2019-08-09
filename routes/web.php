@@ -65,6 +65,11 @@ Route::resource('/admin', 'AdminController');
 //	return $request->session()->all();
 //});
 
+Route::get('/posts', function(){
+	$posts = User::find(1)->posts;
+	return $posts;
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
